@@ -1,0 +1,11 @@
+[package]
+name = "runtime"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+anyhow = "1.0.98"
+rama = { version = "0.2.0-alpha.13", features = ["http"] }
+tokio = { version = "1.44.2", features = ["full"] }
+wasmtime = { git = "https://github.com/bytecodealliance/wasmtime", tag= "v33.0.0" }
+wasmtime-wasi = { git = "https://github.com/bytecodealliance/wasmtime", tag= "v33.0.0" }

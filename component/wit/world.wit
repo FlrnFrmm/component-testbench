@@ -1,0 +1,10 @@
+package rama:component@0.1.0;
+
+interface router {
+    handle-request: func(input: string) -> string;
+    handle-response: func(input: string) -> string;
+}
+
+world service {
+    export router;
+}
