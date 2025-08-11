@@ -1,0 +1,18 @@
+package wit:rama@0.1.0;
+
+interface types {
+    resource request {
+        headers: func() -> result<list<tuple<string, string>>, string>;
+        set-header: func(key: string, value: string) -> result<_, string>;
+    }
+}
+
+interface router {
+    use types.{request};
+    handle-request: func(request: request) -> result<_, string>;
+    handle-response: func(request: request) -> result<_, string>;
+}
+
+world service {
+    export router;
+}

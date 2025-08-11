@@ -13,6 +13,6 @@ crate-type = ["cdylib"]
 package = "rama:component"
 
 [package.metadata.component.target]
-path = "wit/world.wit"
+path = "../wit/world.wit"
 
 [package.metadata.component.dependencies]
