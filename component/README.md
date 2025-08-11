@@ -28,10 +28,10 @@ cargo build --target wasm32-wasip2 --release
 
 ## Inspect Component
 
-Inspecht the components imports and exports.
+Inspect the components imports and exports.
 
 ```sh
 wasm-tools component wit target/wasm32-wasip2/release/component.wasm
 ```
 
-(Component has to build first)
+(Component has to be build first)
