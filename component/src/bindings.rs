@@ -4,7 +4,7 @@
 #[rustfmt::skip]
 #[allow(dead_code, clippy::all)]
 pub mod wit {
-    pub mod rama {
+    pub mod crossroads {
         #[allow(dead_code, async_fn_in_trait, unused_imports, clippy::all)]
         pub mod types {
             #[used]
@@ -39,7 +39,7 @@ pub mod wit {
                     unreachable!();
                     #[cfg(target_arch = "wasm32")]
                     {
-                        #[link(wasm_import_module = "wit:rama/types@0.1.0")]
+                        #[link(wasm_import_module = "wit:crossroads/types@0.1.0")]
                         unsafe extern "C" {
                             #[link_name = "[resource-drop]request"]
                             fn drop(_: u32);
@@ -67,7 +67,7 @@ pub mod wit {
                         );
                         let ptr0 = ret_area.0.as_mut_ptr().cast::<u8>();
                         #[cfg(target_arch = "wasm32")]
-                        #[link(wasm_import_module = "wit:rama/types@0.1.0")]
+                        #[link(wasm_import_module = "wit:crossroads/types@0.1.0")]
                         unsafe extern "C" {
                             #[link_name = "[method]request.headers"]
                             fn wit_import1(_: i32, _: *mut u8);
@@ -180,7 +180,7 @@ pub mod wit {
                         let len1 = vec1.len();
                         let ptr2 = ret_area.0.as_mut_ptr().cast::<u8>();
                         #[cfg(target_arch = "wasm32")]
-                        #[link(wasm_import_module = "wit:rama/types@0.1.0")]
+                        #[link(wasm_import_module = "wit:crossroads/types@0.1.0")]
                         unsafe extern "C" {
                             #[link_name = "[method]request.set-header"]
                             fn wit_import3(
@@ -243,6 +243,149 @@ pub mod wit {
                     }
                 }
             }
+            impl Request {
+                #[allow(unused_unsafe, clippy::all)]
+                pub fn uri(&self) -> Result<_rt::String, _rt::String> {
+                    unsafe {
+                        #[cfg_attr(target_pointer_width = "64", repr(align(8)))]
+                        #[cfg_attr(target_pointer_width = "32", repr(align(4)))]
+                        struct RetArea(
+                            [::core::mem::MaybeUninit<
+                                u8,
+                            >; 3 * ::core::mem::size_of::<*const u8>()],
+                        );
+                        let mut ret_area = RetArea(
+                            [::core::mem::MaybeUninit::uninit(); 3
+                                * ::core::mem::size_of::<*const u8>()],
+                        );
+                        let ptr0 = ret_area.0.as_mut_ptr().cast::<u8>();
+                        #[cfg(target_arch = "wasm32")]
+                        #[link(wasm_import_module = "wit:crossroads/types@0.1.0")]
+                        unsafe extern "C" {
+                            #[link_name = "[method]request.uri"]
+                            fn wit_import1(_: i32, _: *mut u8);
+                        }
+                        #[cfg(not(target_arch = "wasm32"))]
+                        unsafe extern "C" fn wit_import1(_: i32, _: *mut u8) {
+                            unreachable!()
+                        }
+                        unsafe { wit_import1((self).handle() as i32, ptr0) };
+                        let l2 = i32::from(*ptr0.add(0).cast::<u8>());
+                        let result9 = match l2 {
+                            0 => {
+                                let e = {
+                                    let l3 = *ptr0
+                                        .add(::core::mem::size_of::<*const u8>())
+                                        .cast::<*mut u8>();
+                                    let l4 = *ptr0
+                                        .add(2 * ::core::mem::size_of::<*const u8>())
+                                        .cast::<usize>();
+                                    let len5 = l4;
+                                    let bytes5 = _rt::Vec::from_raw_parts(
+                                        l3.cast(),
+                                        len5,
+                                        len5,
+                                    );
+                                    _rt::string_lift(bytes5)
+                                };
+                                Ok(e)
+                            }
+                            1 => {
+                                let e = {
+                                    let l6 = *ptr0
+                                        .add(::core::mem::size_of::<*const u8>())
+                                        .cast::<*mut u8>();
+                                    let l7 = *ptr0
+                                        .add(2 * ::core::mem::size_of::<*const u8>())
+                                        .cast::<usize>();
+                                    let len8 = l7;
+                                    let bytes8 = _rt::Vec::from_raw_parts(
+                                        l6.cast(),
+                                        len8,
+                                        len8,
+                                    );
+                                    _rt::string_lift(bytes8)
+                                };
+                                Err(e)
+                            }
+                            _ => _rt::invalid_enum_discriminant(),
+                        };
+                        result9
+                    }
+                }
+            }
+            impl Request {
+                #[allow(unused_unsafe, clippy::all)]
+                pub fn set_uri(&self, uri: &str) -> Result<(), _rt::String> {
+                    unsafe {
+                        #[cfg_attr(target_pointer_width = "64", repr(align(8)))]
+                        #[cfg_attr(target_pointer_width = "32", repr(align(4)))]
+                        struct RetArea(
+                            [::core::mem::MaybeUninit<
+                                u8,
+                            >; 3 * ::core::mem::size_of::<*const u8>()],
+                        );
+                        let mut ret_area = RetArea(
+                            [::core::mem::MaybeUninit::uninit(); 3
+                                * ::core::mem::size_of::<*const u8>()],
+                        );
+                        let vec0 = uri;
+                        let ptr0 = vec0.as_ptr().cast::<u8>();
+                        let len0 = vec0.len();
+                        let ptr1 = ret_area.0.as_mut_ptr().cast::<u8>();
+                        #[cfg(target_arch = "wasm32")]
+                        #[link(wasm_import_module = "wit:crossroads/types@0.1.0")]
+                        unsafe extern "C" {
+                            #[link_name = "[method]request.set-uri"]
+                            fn wit_import2(_: i32, _: *mut u8, _: usize, _: *mut u8);
+                        }
+                        #[cfg(not(target_arch = "wasm32"))]
+                        unsafe extern "C" fn wit_import2(
+                            _: i32,
+                            _: *mut u8,
+                            _: usize,
+                            _: *mut u8,
+                        ) {
+                            unreachable!()
+                        }
+                        unsafe {
+                            wit_import2(
+                                (self).handle() as i32,
+                                ptr0.cast_mut(),
+                                len0,
+                                ptr1,
+                            )
+                        };
+                        let l3 = i32::from(*ptr1.add(0).cast::<u8>());
+                        let result7 = match l3 {
+                            0 => {
+                                let e = ();
+                                Ok(e)
+                            }
+                            1 => {
+                                let e = {
+                                    let l4 = *ptr1
+                                        .add(::core::mem::size_of::<*const u8>())
+                                        .cast::<*mut u8>();
+                                    let l5 = *ptr1
+                                        .add(2 * ::core::mem::size_of::<*const u8>())
+                                        .cast::<usize>();
+                                    let len6 = l5;
+                                    let bytes6 = _rt::Vec::from_raw_parts(
+                                        l4.cast(),
+                                        len6,
+                                        len6,
+                                    );
+                                    _rt::string_lift(bytes6)
+                                };
+                                Err(e)
+                            }
+                            _ => _rt::invalid_enum_discriminant(),
+                        };
+                        result7
+                    }
+                }
+            }
         }
     }
 }
@@ -250,22 +393,20 @@ pub mod wit {
 #[allow(dead_code, clippy::all)]
 pub mod exports {
     pub mod wit {
-        pub mod rama {
+        pub mod crossroads {
             #[allow(dead_code, async_fn_in_trait, unused_imports, clippy::all)]
             pub mod router {
                 #[used]
                 #[doc(hidden)]
                 static __FORCE_SECTION_REF: fn() = super::super::super::super::__link_custom_section_describing_imports;
                 use super::super::super::super::_rt;
-                pub type Request = super::super::super::super::wit::rama::types::Request;
+                pub type Request = super::super::super::super::wit::crossroads::types::Request;
                 #[doc(hidden)]
                 #[allow(non_snake_case)]
-                pub unsafe fn _export_handle_request_cabi<T: Guest>(
-                    arg0: i32,
-                ) -> *mut u8 {
+                pub unsafe fn _export_handle_cabi<T: Guest>(arg0: i32) -> *mut u8 {
                     #[cfg(target_arch = "wasm32")] _rt::run_ctors_once();
-                    let result0 = T::handle_request(unsafe {
-                        super::super::super::super::wit::rama::types::Request::from_handle(
+                    let result0 = T::handle(unsafe {
+                        super::super::super::super::wit::crossroads::types::Request::from_handle(
                             arg0 as u32,
                         )
                     });
@@ -292,56 +433,7 @@ pub mod exports {
                 }
                 #[doc(hidden)]
                 #[allow(non_snake_case)]
-                pub unsafe fn __post_return_handle_request<T: Guest>(arg0: *mut u8) {
-                    let l0 = i32::from(*arg0.add(0).cast::<u8>());
-                    match l0 {
-                        0 => {}
-                        _ => {
-                            let l1 = *arg0
-                                .add(::core::mem::size_of::<*const u8>())
-                                .cast::<*mut u8>();
-                            let l2 = *arg0
-                                .add(2 * ::core::mem::size_of::<*const u8>())
-                                .cast::<usize>();
-                            _rt::cabi_dealloc(l1, l2, 1);
-                        }
-                    }
-                }
-                #[doc(hidden)]
-                #[allow(non_snake_case)]
-                pub unsafe fn _export_handle_response_cabi<T: Guest>(
-                    arg0: i32,
-                ) -> *mut u8 {
-                    #[cfg(target_arch = "wasm32")] _rt::run_ctors_once();
-                    let result0 = T::handle_response(unsafe {
-                        super::super::super::super::wit::rama::types::Request::from_handle(
-                            arg0 as u32,
-                        )
-                    });
-                    let ptr1 = (&raw mut _RET_AREA.0).cast::<u8>();
-                    match result0 {
-                        Ok(_) => {
-                            *ptr1.add(0).cast::<u8>() = (0i32) as u8;
-                        }
-                        Err(e) => {
-                            *ptr1.add(0).cast::<u8>() = (1i32) as u8;
-                            let vec2 = (e.into_bytes()).into_boxed_slice();
-                            let ptr2 = vec2.as_ptr().cast::<u8>();
-                            let len2 = vec2.len();
-                            ::core::mem::forget(vec2);
-                            *ptr1
-                                .add(2 * ::core::mem::size_of::<*const u8>())
-                                .cast::<usize>() = len2;
-                            *ptr1
-                                .add(::core::mem::size_of::<*const u8>())
-                                .cast::<*mut u8>() = ptr2.cast_mut();
-                        }
-                    };
-                    ptr1
-                }
-                #[doc(hidden)]
-                #[allow(non_snake_case)]
-                pub unsafe fn __post_return_handle_response<T: Guest>(arg0: *mut u8) {
+                pub unsafe fn __post_return_handle<T: Guest>(arg0: *mut u8) {
                     let l0 = i32::from(*arg0.add(0).cast::<u8>());
                     match l0 {
                         0 => {}
@@ -357,33 +449,23 @@ pub mod exports {
                     }
                 }
                 pub trait Guest {
-                    fn handle_request(request: Request) -> Result<(), _rt::String>;
-                    fn handle_response(request: Request) -> Result<(), _rt::String>;
+                    fn handle(request: Request) -> Result<(), _rt::String>;
                 }
                 #[doc(hidden)]
-                macro_rules! __export_wit_rama_router_0_1_0_cabi {
+                macro_rules! __export_wit_crossroads_router_0_1_0_cabi {
                     ($ty:ident with_types_in $($path_to_types:tt)*) => {
                         const _ : () = { #[unsafe (export_name =
-                        "wit:rama/router@0.1.0#handle-request")] unsafe extern "C" fn
-                        export_handle_request(arg0 : i32,) -> * mut u8 { unsafe {
-                        $($path_to_types)*:: _export_handle_request_cabi::<$ty > (arg0) }
-                        } #[unsafe (export_name =
-                        "cabi_post_wit:rama/router@0.1.0#handle-request")] unsafe extern
-                        "C" fn _post_return_handle_request(arg0 : * mut u8,) { unsafe {
-                        $($path_to_types)*:: __post_return_handle_request::<$ty > (arg0)
-                        } } #[unsafe (export_name =
-                        "wit:rama/router@0.1.0#handle-response")] unsafe extern "C" fn
-                        export_handle_response(arg0 : i32,) -> * mut u8 { unsafe {
-                        $($path_to_types)*:: _export_handle_response_cabi::<$ty > (arg0)
-                        } } #[unsafe (export_name =
-                        "cabi_post_wit:rama/router@0.1.0#handle-response")] unsafe extern
-                        "C" fn _post_return_handle_response(arg0 : * mut u8,) { unsafe {
-                        $($path_to_types)*:: __post_return_handle_response::<$ty > (arg0)
-                        } } };
+                        "wit:crossroads/router@0.1.0#handle")] unsafe extern "C" fn
+                        export_handle(arg0 : i32,) -> * mut u8 { unsafe {
+                        $($path_to_types)*:: _export_handle_cabi::<$ty > (arg0) } }
+                        #[unsafe (export_name =
+                        "cabi_post_wit:crossroads/router@0.1.0#handle")] unsafe extern
+                        "C" fn _post_return_handle(arg0 : * mut u8,) { unsafe {
+                        $($path_to_types)*:: __post_return_handle::<$ty > (arg0) } } };
                     };
                 }
                 #[doc(hidden)]
-                pub(crate) use __export_wit_rama_router_0_1_0_cabi;
+                pub(crate) use __export_wit_crossroads_router_0_1_0_cabi;
                 #[cfg_attr(target_pointer_width = "64", repr(align(8)))]
                 #[cfg_attr(target_pointer_width = "32", repr(align(4)))]
                 struct _RetArea(
@@ -524,35 +606,37 @@ mod _rt {
 /// ```
 #[allow(unused_macros)]
 #[doc(hidden)]
-macro_rules! __export_service_impl {
+macro_rules! __export_crossroads_impl {
     ($ty:ident) => {
         self::export!($ty with_types_in self);
     };
     ($ty:ident with_types_in $($path_to_types_root:tt)*) => {
         $($path_to_types_root)*::
-        exports::wit::rama::router::__export_wit_rama_router_0_1_0_cabi!($ty
-        with_types_in $($path_to_types_root)*:: exports::wit::rama::router);
+        exports::wit::crossroads::router::__export_wit_crossroads_router_0_1_0_cabi!($ty
+        with_types_in $($path_to_types_root)*:: exports::wit::crossroads::router);
     };
 }
 #[doc(inline)]
-pub(crate) use __export_service_impl as export;
+pub(crate) use __export_crossroads_impl as export;
 #[cfg(target_arch = "wasm32")]
 #[unsafe(
-    link_section = "component-type:wit-bindgen:0.41.0:wit:rama@0.1.0:service:encoded world"
+    link_section = "component-type:wit-bindgen:0.41.0:wit:crossroads@0.1.0:crossroads:encoded world"
 )]
 #[doc(hidden)]
 #[allow(clippy::octal_escapes)]
-pub static __WIT_BINDGEN_COMPONENT_TYPE: [u8; 434] = *b"\
-\0asm\x0d\0\x01\0\0\x19\x16wit-component-encoding\x04\0\x07\xb4\x02\x01A\x02\x01\
-A\x05\x01B\x0a\x04\0\x07request\x03\x01\x01h\0\x01o\x02ss\x01p\x02\x01j\x01\x03\x01\
+pub static __WIT_BINDGEN_COMPONENT_TYPE: [u8; 515] = *b"\
+\0asm\x0d\0\x01\0\0\x19\x16wit-component-encoding\x04\0\x07\x82\x03\x01A\x02\x01\
+A\x05\x01B\x0f\x04\0\x07request\x03\x01\x01h\0\x01o\x02ss\x01p\x02\x01j\x01\x03\x01\
 s\x01@\x01\x04self\x01\0\x04\x04\0\x17[method]request.headers\x01\x05\x01j\0\x01\
 s\x01@\x03\x04self\x01\x03keys\x05values\0\x06\x04\0\x1a[method]request.set-head\
-er\x01\x07\x03\0\x14wit:rama/types@0.1.0\x05\0\x02\x03\0\0\x07request\x01B\x07\x02\
+er\x01\x07\x01j\x01s\x01s\x01@\x01\x04self\x01\0\x08\x04\0\x13[method]request.ur\
+i\x01\x09\x01@\x02\x04self\x01\x03uris\0\x06\x04\0\x17[method]request.set-uri\x01\
+\x0a\x03\0\x1awit:crossroads/types@0.1.0\x05\0\x02\x03\0\0\x07request\x01B\x06\x02\
 \x03\x02\x01\x01\x04\0\x07request\x03\0\0\x01i\x01\x01j\0\x01s\x01@\x01\x07reque\
-st\x02\0\x03\x04\0\x0ehandle-request\x01\x04\x04\0\x0fhandle-response\x01\x04\x04\
-\0\x15wit:rama/router@0.1.0\x05\x02\x04\0\x16wit:rama/service@0.1.0\x04\0\x0b\x0d\
-\x01\0\x07service\x03\0\0\0G\x09producers\x01\x0cprocessed-by\x02\x0dwit-compone\
-nt\x070.227.1\x10wit-bindgen-rust\x060.41.0";
+st\x02\0\x03\x04\0\x06handle\x01\x04\x04\0\x1bwit:crossroads/router@0.1.0\x05\x02\
+\x04\0\x1fwit:crossroads/crossroads@0.1.0\x04\0\x0b\x10\x01\0\x0acrossroads\x03\0\
+\0\0G\x09producers\x01\x0cprocessed-by\x02\x0dwit-component\x070.227.1\x10wit-bi\
+ndgen-rust\x060.41.0";
 #[inline(never)]
 #[doc(hidden)]
 pub fn __link_custom_section_describing_imports() {

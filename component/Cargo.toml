@@ -4,6 +4,8 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
+url = "2.5.4"
+uuid = { version = "1.18.0", features = ["v4"] }
 wit-bindgen-rt = { version = "0.41.0", features = ["bitflags"] }
 
 [lib]
@@ -13,6 +15,6 @@ crate-type = ["cdylib"]
 package = "rama:component"
 
 [package.metadata.component.target]
-path = "../wit/world.wit"
+path = "../wit"
 
 [package.metadata.component.dependencies]
